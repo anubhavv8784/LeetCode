@@ -1,14 +1,19 @@
-class Solution {
-  public int majorityElement(int[] nums) {
-    Integer ans = null;
-    int count = 0;
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+    const hash = {};
+    let res = 0;
+    let majority = 0;
 
-    for (final int num : nums) {
-      if (count == 0)
-        ans = num;
-      count += num == ans ? 1 : -1;
+    for (let n of nums) {
+        hash[n] = 1 + (hash[n] || 0);
+        if (hash[n] > majority) {
+            res = n;
+            majority = hash[n];
+        }
     }
 
-    return ans;
-  }
-}
+    return res;    
+};
